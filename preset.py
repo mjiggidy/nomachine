@@ -30,9 +30,18 @@ def make_preset(server:str, port:int=4000, settings:typing.Union[dict[str,str],N
 	for key, value in addtl_settings.items():
 		grp_general.append(ElementTree.Element("option", {"key":key, "value": value}))
 	
+	# Embed thumbnail
+	grp_general.append(ElementTree.Element("option",{"key":"Session screenshot", "value":make_thumbnail()}))
+	
 	# Generate XML as utf-8 string
 	docstring = "<!DOCTYPE NXClientSettings>"
 	return docstring + ElementTree.tostring(root, encoding="utf-8").decode("utf-8")
+
+def make_thumbnail(path:typing.Union[pathlib.Path, str, None]=None) -> str:
+	"""Encode thumbnail as base64"""
+	with open("res/nm_thumb_default.b64") as b64:
+		return b64.read()
+
 
 if __name__ == "__main__":
 
