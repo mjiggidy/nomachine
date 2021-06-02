@@ -50,6 +50,13 @@ if __name__ == "__main__":
 	if len(sys.argv) < 2:
 		print(f"Usage: {sys.argv[0]} server_address [output_file_path.nxs]", file=sys.stderr)
 		sys.exit(1)
+
+	# Quick n dity about
+	if "--about" in sys.argv[1:]:
+		print(f"NoMachine Preset Maker 9000 v1.0")
+		print("By Michael Jordan <michael.jordan@disney.com>")
+		print(f"Usage: {sys.argv[0]} server_address [output_file_path.nxs]")
+		sys.exit(0)
 	
 	# Build filename either from the one provided, or from the servername
 	filename = pathlib.Path(sys.argv[2] if len(sys.argv)<2 else sys.argv[1]+".nxs").with_suffix(".nxs")
